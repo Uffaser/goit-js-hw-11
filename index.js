@@ -1,16 +1,16 @@
-import{a as n,i as c,S as d}from"./assets/vendor-B3IAfeER.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))o(e);new MutationObserver(e=>{for(const r of e)if(r.type==="childList")for(const i of r.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&o(i)}).observe(document,{childList:!0,subtree:!0});function s(e){const r={};return e.integrity&&(r.integrity=e.integrity),e.referrerPolicy&&(r.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?r.credentials="include":e.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function o(e){if(e.ep)return;e.ep=!0;const r=s(e);fetch(e.href,r)}})();function u(a){return n.get("https://pixabay.com/api/",{params:{key:"53361036-d6c3e8b24991f3de089666c85",q:a,image_type:"photo",orientation:"horizontal",safesearch:!0}})}function f(a){return a.map(t=>`<li class="gallery-item">
-            <a href="${t.webformatURL}">
-            <img class="gallery-image" src="${t.largeImageURL}" alt="${t.tags}">
+import{a as n,S as c,i as d}from"./assets/vendor-MgecxatS.js";(function(){const a=document.createElement("link").relList;if(a&&a.supports&&a.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))s(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const i of t.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&s(i)}).observe(document,{childList:!0,subtree:!0});function r(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?t.credentials="include":e.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function s(e){if(e.ep)return;e.ep=!0;const t=r(e);fetch(e.href,t)}})();function u(l){return n.get("https://pixabay.com/api/",{params:{key:"53361036-d6c3e8b24991f3de089666c85",q:l,image_type:"photo",orientation:"horizontal",safesearch:!0}}).then(a=>a.data)}function p(l){const a=l.map(s=>`<li class="gallery-item">
+            <a href="${s.largeImageURL}">
+            <img class="gallery-image" src="${s.webformatURL}" alt="${s.tags}">
             </a>
             <div class="gallery-desc-box">
                 <p class="gallery-desc-title">Likes
-                    <span class="gallery-desc">${t.likes}</span></p>
+                    <span class="gallery-desc">${s.likes}</span></p>
                 <p class="gallery-desc-title">Views
-                    <span class="gallery-desc">${t.views}</span></p>
+                    <span class="gallery-desc">${s.views}</span></p>
                 <p class="gallery-desc-title">Comments
-                    <span class="gallery-desc">${t.comments}</span></p>
+                    <span class="gallery-desc">${s.comments}</span></p>
                 <p class="gallery-desc-title">Downloads
-                    <span class="gallery-desc">${t.downloads}</span></p>
+                    <span class="gallery-desc">${s.downloads}</span></p>
             </div>
-        </li>`).join("")}function p(){l.galleryList.innerHTML=""}function y(){l.loader.classList.remove("visible")}function g(){l.loader.classList.add("visible")}const l={form:document.querySelector(".form"),galleryList:document.querySelector(".gallery"),loader:document.querySelector(".loader")};l.form.addEventListener("submit",a=>{a.preventDefault();const t=a.target.elements.search.value;p(),y(),u(t).then(s=>(s.data.hits.length===0&&c.error({message:"Sorry, there are no images matching your search query. Please try again!",position:"topRight"}),s.data.hits)).then(s=>{l.galleryList.innerHTML=f(s);const o=new d(".gallery-item a");o.options.captionsData="alt",o.refresh()}).catch(s=>console.log(s)).finally(()=>g()),l.form.reset()});
+        </li>`).join("");o.galleryList.innerHTML=a;const r=new c(".gallery-item a");r.options.captionsData="alt",r.refresh()}function f(){o.galleryList.innerHTML=""}function y(){o.loader.classList.remove("hidden")}function m(){o.loader.classList.add("hidden")}const o={form:document.querySelector(".form"),galleryList:document.querySelector(".gallery"),loader:document.querySelector(".loader")};o.form.addEventListener("submit",l=>{l.preventDefault();const a=l.target.elements.search.value.trim();f(),y(),u(a).then(r=>(r.hits.length===0&&d.error({message:"Sorry, there are no images matching your search query. Please try again!",position:"topRight"}),r.hits)).then(r=>{p(r)}).catch(r=>console.log(r)).finally(()=>m()),o.form.reset()});
 //# sourceMappingURL=index.js.map
