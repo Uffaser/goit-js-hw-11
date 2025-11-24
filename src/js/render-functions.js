@@ -1,12 +1,14 @@
 import { refs } from '../main';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 export function createGallery(images) {
-    return images
+    const markup = images
         .map(
             image =>
                 `<li class="gallery-item">
-            <a href="${image.webformatURL}">
-            <img class="gallery-image" src="${image.largeImageURL}" alt="${image.tags}">
+            <a href="${image.largeImageURL}">
+            <img class="gallery-image" src="${image.webformatURL}" alt="${image.tags}">
             </a>
             <div class="gallery-desc-box">
                 <p class="gallery-desc-title">Likes
@@ -21,6 +23,12 @@ export function createGallery(images) {
         </li>`
         )
         .join('');
+
+    refs.galleryList.innerHTML = markup;
+
+    const gallery = new SimpleLightbox('.gallery-item a');
+    gallery.options.captionsData = 'alt';
+    gallery.refresh();
 }
 
 export function clearGallery() {
@@ -28,9 +36,9 @@ export function clearGallery() {
 }
 
 export function showLoader() {
-    refs.loader.classList.remove('visible');
+    refs.loader.classList.remove('hidden');
 }
 
 export function hideLoader() {
-    refs.loader.classList.add('visible');
+    refs.loader.classList.add('hidden');
 }

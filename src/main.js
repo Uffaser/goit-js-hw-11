@@ -7,8 +7,6 @@ import {
 } from './js/render-functions.js';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
 
 export const refs = {
     form: document.querySelector('.form'),
@@ -19,28 +17,24 @@ export const refs = {
 refs.form.addEventListener('submit', e => {
     e.preventDefault();
 
-    const searchText = e.target.elements.search.value;
+    const searchText = e.target.elements.search.value.trim();
 
     clearGallery();
     showLoader();
 
     getImagesByQuery(searchText)
-        .then(response => {
-            if (response.data.hits.length === 0) {
+        .then(data => {
+            if (data.hits.length === 0) {
                 iziToast.error({
                     message:
                         'Sorry, there are no images matching your search query. Please try again!',
                     position: 'topRight',
                 });
             }
-            return response.data.hits;
+            return data.hits;
         })
         .then(hits => {
-            refs.galleryList.innerHTML = createGallery(hits);
-
-            const gallery = new SimpleLightbox('.gallery-item a');
-            gallery.options.captionsData = 'alt';
-            gallery.refresh();
+            createGallery(hits);
         })
         .catch(error => console.log(error))
         .finally(() => hideLoader());
