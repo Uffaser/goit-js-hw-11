@@ -2,6 +2,8 @@ import { refs } from '../main';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
+const gallery = new SimpleLightbox('.gallery-item a');
+
 export function createGallery(images) {
     const markup = images
         .map(
@@ -26,7 +28,6 @@ export function createGallery(images) {
 
     refs.galleryList.innerHTML = markup;
 
-    const gallery = new SimpleLightbox('.gallery-item a');
     gallery.options.captionsData = 'alt';
     gallery.refresh();
 }

@@ -19,6 +19,14 @@ refs.form.addEventListener('submit', e => {
 
     const searchText = e.target.elements.search.value.trim();
 
+    if (!searchText) {
+        iziToast.error({
+            message: 'The input field is empty. Please enter your query !',
+            position: 'topRight',
+        });
+        return;
+    }
+
     clearGallery();
     showLoader();
 
